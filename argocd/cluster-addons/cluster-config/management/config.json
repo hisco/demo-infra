@@ -1,0 +1,14 @@
+{
+  "cluster": {
+    "project": "koalabackend",
+    "location": "me-west1-a",
+    "cloudProvider": "gcp",
+    "name": "management-cluster",
+    "address": "https://kubernetes.default.svc"
+  },
+  "enabled": true,
+  "targetRevision": "staging",
+  "argoProject": "cluster-admin",
+  "valuesFile": "values-management.yaml",
+  "overlay": "management"
+}

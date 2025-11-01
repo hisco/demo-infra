@@ -1,0 +1,31 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: cluster-addons
+  namespace: argocd
+spec:
+  generators:
+    - git:
+        repoURL: https://github.com/hisco/demo-infra
+        revision: main
+        files:
+          - path: "argocd/cluster-addons/cluster-config/*/config.json"
+  template:
+    metadata:
+      name: 'addons-{{cluster.name}}'
+    spec:
+      project: '{{argoProject}}'
+      source:
+        repoURL: https://github.com/hisco/demo-infra
+        targetRevision: '{{targetRevision}}'
+        path: argocd/cluster-addons
+        helm:
+          valueFiles:
+            - '{{valuesFile}}'
+      destination:
+        server: '{{cluster.address}}'
+        namespace: argocd
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
