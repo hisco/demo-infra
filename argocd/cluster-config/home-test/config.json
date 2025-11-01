@@ -1,0 +1,14 @@
+{
+  "cluster": {
+    "name": "home-test",
+    "cloudProvider": "gcp",
+    "project": "test-project-123",
+    "location": "test",
+    "address": "https://kubernetes.default.svc"
+  },
+  "enabled": true,
+  "targetRevision": "main",
+  "argoProject": "home-test-infra",
+  "valuesFile": "values-home-test.yaml",
+  "overlay": "home-test"
+}
